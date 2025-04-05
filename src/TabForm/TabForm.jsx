@@ -7,29 +7,72 @@ const tabs = [
   {
     name: "Profile",
     component: Profile,
-  },
-  {
-    name: "Settings",
-    component: Settings,
+    validate: (data, setErrors) => {
+      const errors = {};
+      if (!data.name || !data.email) {
+        errors.name = "Name is required";
+        errors.email = "Email is required";
+      }
+      setErrors(errors);
+      return Object.keys(errors).length === 0;
+    },
   },
   {
     name: "Interests",
     component: Interests,
+    validate: (data, setErrors) => {
+      const errors = {};
+      if (data.interests.length === 0) {
+        errors.interests = "Please select at least one interest";
+      }
+      setErrors(errors);
+      return Object.keys(errors).length === 0;
+    },
+  },
+  {
+    name: "Settings",
+    component: Settings,
+    validate: (data, setErrors) => {
+      const errors = {};
+      if (Object.values(data.settings).every((value) => !value)) {
+        errors.settings = "Please select at least one setting";
+      }
+      setErrors(errors);
+      return Object.keys(errors).length === 0;
+    },
   },
 ];
 
 export default function TabForm() {
   const [activeTab, setActiveTab] = useState(0);
-  cosnt[(formData, setFormData)] = useState({
+  const [formData, setFormData] = useState({
     name: "",
     age: "",
     email: "",
-    interests: ["Coding", "Music", "Movies"],
+    interests: ["Coding", "Music"],
     settings: {
       notifications: true,
-      darkMode: false,
+      darkmode: false,
     },
   });
+
+  const [errors, setErrors] = useState({});
+
+  const handlePrevious = () => {
+    setErrors({});
+    setActiveTab((prevTab) => prevTab - 1);
+  };
+
+  const handleNext = () => {
+    if (tabs[activeTab].validate(formData, setErrors)) {
+      setErrors({});
+      setActiveTab((prevTab) => prevTab + 1);
+    }
+  };
+
+  const handleOnSubmit = () => {
+    console.log(formData);
+  };
 
   const ActiveComponent = tabs[activeTab]?.component;
   return (
@@ -46,7 +89,20 @@ export default function TabForm() {
         ))}
       </div>
       <div style={styles.tabBody}>
-        <ActiveComponent data={formData} />
+        <ActiveComponent
+          data={formData}
+          setData={setFormData}
+          errors={errors}
+        />
+      </div>
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {activeTab > 0 && <button onClick={handlePrevious}>Previous</button>}
+        {activeTab < tabs.length - 1 && (
+          <button onClick={handleNext}>Next</button>
+        )}
+        {activeTab === tabs.length - 1 && (
+          <button onClick={handleOnSubmit}>Submit</button>
+        )}
       </div>
     </div>
   );
