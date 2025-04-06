@@ -1,0 +1,29 @@
+.verticalLine {
+  position: relative;
+}
+
+.verticalLine::before {
+  content: "";
+  position: absolute;
+  top: 25px;
+  left: 5px;
+  height: calc(100% - 25px);
+  width: 1px;
+  background-color: gray;
+  z-index: 1;
+}
+
+/* .horizontalLine::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -15px;
+  width: 15px;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 1;
+} */
+/* 
+.verticalLine:last-child::before {
+  height: 0;
+} */
