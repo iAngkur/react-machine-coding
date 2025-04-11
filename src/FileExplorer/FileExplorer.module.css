@@ -1,3 +1,67 @@
+.fileExplorer {
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: left;
+  padding: 2rem;
+  min-width: 200px;
+}
+
+.listItem {
+  position: relative;
+}
+
+.treeNode {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  cursor: pointer;
+  user-select: none;
+}
+
+.treeNode:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.nodeName {
+  flex-grow: 1;
+}
+
+.hasChildren {
+  position: relative;
+}
+
+.childrenContainer {
+  margin-left: 1.5rem;
+}
+
+.contextMenu {
+  width: 120px;
+  background: white;
+  color: black;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.menuItem:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
 .verticalLine {
   position: relative;
 }
@@ -5,25 +69,33 @@
 .verticalLine::before {
   content: "";
   position: absolute;
-  top: 25px;
-  left: 5px;
-  height: calc(100% - 25px);
+  top: 0;
+  left: 0.75rem;
   width: 1px;
-  background-color: gray;
-  z-index: 1;
+  height: 100%;
+  background-color: #ccc;
 }
 
-/* .horizontalLine::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -15px;
-  width: 15px;
-  height: 1px;
-  background-color: #ccc;
-  z-index: 1;
-} */
-/* 
-.verticalLine:last-child::before {
-  height: 0;
-} */
+.inputContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 2px 8px;
+  border: 1px solid #0078d4;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #0078d4;
+}
+
+.nodeInput {
+  border: none;
+  outline: none;
+  padding: 2px;
+  font-size: inherit;
+  flex-grow: 1;
+  min-width: 120px;
+}
+
+.nodeInput:focus {
+  outline: none;
+}

@@ -1,5 +1,6 @@
 import AutocompleteSearchBar from "./AutocompleteSearchBar/AutocompleteSearchBar";
 import FileExplorer from "./FileExplorer/FileExplorer";
+import FileExplorer2 from "./FileExplorer2/FileExplorer2";
 import Pagination from "./Pagination/Pagination";
 import TabForm from "./TabForm/TabForm";
 
@@ -9,7 +10,8 @@ function App() {
       {/* <TabForm /> */}
       {/* <Pagination /> */}
       {/* <AutocompleteSearchBar /> */}
-      <FileExplorer />
+      {/* <FileExplorer /> */}
+      <FileExplorer2 />
     </>
   );
 }
